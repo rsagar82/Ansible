@@ -1,4 +1,9 @@
+[web_servers]
 ubuntu1
 ubuntu2
+
+[db_servers]
 ubuntu3
+
+[file_servers]
 centos8
