@@ -7,3 +7,6 @@ ubuntu3
 
 [file_servers]
 centos8
+
+[workstations]
+ubuntu2
