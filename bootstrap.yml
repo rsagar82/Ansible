@@ -1,0 +1,46 @@
+---
+ 
+ - hosts: all
+   become: true
+   pre_tasks:
+ 
+   - name: install updates (CentOS)
+     tags: always
+     dnf:
+       update_only: yes
+       update_cache: yes
+     when: ansible_distribution == "CentOS"
+ 
+   - name: install updates (Ubuntu)
+     tags: always
+     apt:
+       upgrade: dist
+       update_cache: yes
+     when: ansible_distribution == "Ubuntu"
+
+ - hosts: all
+   become: true
+   tasks:
+
+   - name: create cocoa user
+     tags: always
+     user:
+       name: cocoa
+       group: root
+ 
+   - name: add ssh key for cocoa
+     tags: always
+     authorized_key:
+       user: cocoa
+       key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDiElG6CYDPoIoYYKi26YNgE/Vk1v4SAzIfpIoV30yy8 ansible"
+   
+   - name: add sudoers file for cocoa
+     tags: always
+     copy:
+       src: sudoer_cocoa
+       dest: /etc/sudoers.d/cocoa
+       owner: root
+       group: root
+       mode: 0440  
+       
+

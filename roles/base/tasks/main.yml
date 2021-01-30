@@ -1,0 +1,6 @@
+- name: add ssh key for cocoa
+  authorized_key:
+      user: cocoa
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDiElG6CYDPoIoYYKi26YNgE/Vk1v4SAzIfpIoV30yy8 ansible"
+
+
